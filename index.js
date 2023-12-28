@@ -1,11 +1,18 @@
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors";
 import { connectDB } from "./src/utils/connectDB.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 const app = express();
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "16kb", extended: true }));
 app.use(express.urlencoded({ limit: "16kb", extended: true }));
 
